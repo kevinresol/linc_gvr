@@ -70,6 +70,9 @@ extern class Gvr {
 	@:native('gvr_buffer_spec_create')
 	static function bufferSpecCreate(context:Context):BufferSpec;
 	
+	@:native('gvr_buffer_spec_get_size')
+	static function bufferSpecGetSize(spec:BufferSpec):Sizei;
+	
 	// BufferViewportList
 	
 	@:native('gvr_buffer_viewport_list_create')
@@ -77,6 +80,11 @@ extern class Gvr {
 	
 	@:native('linc::gvr::buffer_viewport_list_get_item')
 	static function bufferViewportListGetItem(context:Context, list:BufferViewportList, index:Int):BufferViewport;
+	
+	// Viewport
+	
+	@:native('gvr_buffer_viewport_get_source_uv')
+	static function bufferViewportGetSourceUv(viewport:BufferViewport):Rectf;
 	
 	
 	// SwapChain
@@ -89,6 +97,9 @@ extern class Gvr {
 	
 	@:native('gvr_swap_chain_acquire_frame')
 	static function swapChainAcquireFrame(swapChain:SwapChain):Frame;
+	
+	@:native('gvr_swap_chain_get_buffer_size')
+	static function swapChainGetBufferSize(swapChain:SwapChain, index:Int):Sizei;
 	
 	// Frame
 	

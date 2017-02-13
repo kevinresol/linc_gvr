@@ -9,7 +9,7 @@
         <compilerflag value='-I${LINC_GVR_PATH}/linc/'/>
         <compilerflag value='-I${LINC_GVR_PATH}/lib/'/>
         <compilerflag value='-std=gnu++11'/>
-        <!--<compilerflag value='-DGVR_NO_CPP_WRAPPER'/>-->
+        <compilerflag value='-DGVR_NO_CPP_WRAPPER'/>
 
         <file name='${LINC_GVR_PATH}linc/linc_gvr.cpp' />
 
