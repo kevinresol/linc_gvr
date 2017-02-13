@@ -86,6 +86,9 @@ extern class Gvr {
 	@:native('gvr_buffer_viewport_get_source_uv')
 	static function bufferViewportGetSourceUv(viewport:BufferViewport):Rectf;
 	
+	@:native('gvr_buffer_viewport_get_source_fov')
+	static function bufferViewportGetSourceFov(viewport:BufferViewport):Rectf;
+	
 	
 	// SwapChain
 	
@@ -115,6 +118,11 @@ extern class Gvr {
 	inline static function frameSubmit(frame:Frame, viewportList:BufferViewportList, headSpaceFromStartSpace:Mat4f):Void {
 		untyped __cpp__('gvr_frame_submit(&({0}), {1}, {2})', frame.ptr, viewportList, headSpaceFromStartSpace);
 	}
+	
+	
+	// Head Mounted Display
+	@:native('gvr_get_eye_from_head_matrix')
+	static function getEyeFromHeadMatrix(context:Context, eye:Int):Mat4f;
 	
 	// Head Tracking
 	
