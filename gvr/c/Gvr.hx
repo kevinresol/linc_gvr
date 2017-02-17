@@ -37,9 +37,6 @@ extern class Gvr {
 	@:native('gvr_get_maximum_effective_render_target_size')
 	static function getMaximumEffectiveRenderTargetSize(context:Context):Sizei;
 	
-	@:native('linc::gvr::get_recommended_buffer_viewports')
-	static function getRecommendedBufferViewports(context:Context):BufferViewportList;
-	
 	// @:native('gvr_get_screen_buffer_viewports')
 	// static function get_screen_buffer_viewports(context:Context, gvr_buffer_viewport_list *viewport_list):Void;
 	
@@ -78,10 +75,16 @@ extern class Gvr {
 	@:native('gvr_buffer_viewport_list_create')
 	static function bufferViewportListCreate(context:Context):BufferViewportList;
 	
-	@:native('linc::gvr::buffer_viewport_list_get_item')
-	static function bufferViewportListGetItem(context:Context, list:BufferViewportList, index:Int):BufferViewport;
+	@:native('gvr_buffer_viewport_list_get_item')
+	static function bufferViewportListGetItem(list:BufferViewportList, index:Int, viewport:BufferViewport):Void;
+	
+	@:native('gvr_get_recommended_buffer_viewports')
+	static function getRecommendedBufferViewports(context:Context, list:BufferViewportList):Void;
 	
 	// Viewport
+	
+	@:native('gvr_buffer_viewport_create')
+	static function bufferViewportCreate(context:Context):BufferViewport;
 	
 	@:native('gvr_buffer_viewport_get_source_uv')
 	static function bufferViewportGetSourceUv(viewport:BufferViewport):Rectf;
