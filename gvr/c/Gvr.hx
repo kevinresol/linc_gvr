@@ -2,6 +2,7 @@ package gvr.c;
 
 import cpp.Pointer;
 import gvr.c.BufferSpec;
+import gvr.c.Context;
 
 @:keep
 @:include('linc_gvr.h')
@@ -9,6 +10,7 @@ import gvr.c.BufferSpec;
 @:build(linc.Linc.touch())
 @:build(linc.Linc.xml('gvr', '../../'))
 #end
+
 extern class Gvr {
 	
 	@:native('gvr_create')
@@ -18,7 +20,7 @@ extern class Gvr {
 	static function clearError(context:Context):Void;
 
 	@:native('gvr_destroy')
-	static function destroy(context:Pointer<Context>):Void;
+	static function destroy(context:ContextAddress):Void;
 
 
 	// @:native('gvr_distort_to_screen')
@@ -55,8 +57,8 @@ extern class Gvr {
 	@:native('gvr_initialize_gl')
 	static function initializeGl(context:Context):Void;
 	
-	// @:native('gvr_set_surface_size')
-	// static function set_surface_size(context:Context, surface_size_pixels:Sizei):Void;
+	@:native('linc::gvr::set_surface_size')
+	static function setSurfaceSize(context:Context, width:Int, height:Int):Void;
 	
 	// @:native('gvr_user_prefs_get_controller_handedness')
 	// static function user_prefs_get_controller_handedness(const gvr_user_prefs *user_prefs):Int;
@@ -98,8 +100,8 @@ extern class Gvr {
 	@:native('linc::gvr::swap_chain_create')
 	static function swapChainCreate(context:Context, size:Int):SwapChain;
 	
-	@:native('gvr_swap_chain_resize_buffer')
-	static function swapChainResizeBuffer(swapChain:SwapChain, index:Int, size:Sizei):Void;
+	@:native('linc::gvr::swap_chain_resize_buffer')
+	static function swapChainResizeBuffer(swapChain:SwapChain, index:Int, width:Int, height:Int):Void;
 	
 	@:native('gvr_swap_chain_acquire_frame')
 	static function swapChainAcquireFrame(swapChain:SwapChain):Frame;
