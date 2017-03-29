@@ -13,7 +13,7 @@ import gvr.c.Context;
 
 extern class Gvr {
 	
-	@:native('gvr_create')
+	@:native('linc::gvr::create')
 	static function create():Context;
 	
 	@:native('gvr_clear_error')

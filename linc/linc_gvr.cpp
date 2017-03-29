@@ -3,9 +3,32 @@
 #include <vector>
 #include "./linc_gvr.h"
 
+#ifdef __ANDROID__
+    #include "SDL.h"
+    #include <jni.h>
+    #include <android/log.h>
+#endif
+
 namespace linc {
 
     namespace gvr {
+        
+        gvr_context* create() {
+#ifdef __ANDROID__
+            JNIEnv* env = (JNIEnv*)SDL_AndroidGetJNIEnv(); 
+            jobject app_context = (jobject)SDL_AndroidGetActivity();
+            jclass clazz(env->GetObjectClass(app_context));
+            // jclass clazz = env->FindClass("android/content/ContextWrapper");
+            jmethodID method_id = env->GetMethodID(clazz, "getClassLoader", "()Ljava/lang/ClassLoader;");
+            jobject class_loader = env->CallObjectMethod(app_context, method_id);
+            gvr_context* gvr = gvr_create(env, app_context, class_loader);
+            // env->DeleteLocalRef(app_context);
+            // env->DeleteLocalRef(clazz);
+            return gvr;
+#else
+            return gvr_create();
+#endif
+        }
         
         gvr_swap_chain* swap_chain_create(gvr_context* gvr, int size) {
             std::vector<const gvr_buffer_spec*> specs;
