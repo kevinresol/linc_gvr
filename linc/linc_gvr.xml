@@ -20,9 +20,9 @@
         <!-- add linker flags to the haxe build output -->
         
         <section if="android">
-            <flag value='-L/Users/kevin/Codes/gvr-android-sdk/libraries/jni/arm64-v8a'/>
-            <flag value='-L/Users/kevin/Codes/gvr-android-sdk/libraries/jni/armeabi-v7a'/>
-            <flag value='-L/Users/kevin/Codes/gvr-android-sdk/libraries/jni/x86'/>
+            <flag value='-L${LINC_GVR_PATH}/lib/gvr-android-sdk/libraries/jni/arm64-v8a'/>
+            <flag value='-L${LINC_GVR_PATH}/lib/gvr-android-sdk/libraries/jni/armeabi-v7a'/>
+            <flag value='-L${LINC_GVR_PATH}/lib/gvr-android-sdk/libraries/jni/x86'/>
             <flag value='-lgvr'/>
         </section>
 
