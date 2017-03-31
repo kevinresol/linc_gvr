@@ -18,12 +18,12 @@ namespace linc {
             JNIEnv* env = (JNIEnv*)SDL_AndroidGetJNIEnv(); 
             jobject app_context = (jobject)SDL_AndroidGetActivity();
             jclass clazz(env->GetObjectClass(app_context));
-            // jclass clazz = env->FindClass("android/content/ContextWrapper");
             jmethodID method_id = env->GetMethodID(clazz, "getClassLoader", "()Ljava/lang/ClassLoader;");
             jobject class_loader = env->CallObjectMethod(app_context, method_id);
             gvr_context* gvr = gvr_create(env, app_context, class_loader);
-            // env->DeleteLocalRef(app_context);
-            // env->DeleteLocalRef(clazz);
+            env->DeleteLocalRef(app_context);
+            env->DeleteLocalRef(class_loader);
+            env->DeleteLocalRef(clazz);
             return gvr;
 #else
             return gvr_create();
