@@ -16,11 +16,14 @@ extern class Gvr {
 	@:native('linc::gvr::create')
 	static function create():Context;
 	
+	@:native('linc::gvr::destroy')
+	static function destroy():Context;
+
+	// @:native('gvr_destroy')
+	// static function destroy(context:ContextAddress):Void;
+	
 	@:native('gvr_clear_error')
 	static function clearError(context:Context):Void;
-
-	@:native('gvr_destroy')
-	static function destroy(context:ContextAddress):Void;
 
 
 	// @:native('gvr_distort_to_screen')

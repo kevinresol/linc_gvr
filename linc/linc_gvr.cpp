@@ -13,6 +13,8 @@ namespace linc {
 
     namespace gvr {
         
+        gvr_context* _ctx = NULL;
+        
         gvr_context* create() {
 #ifdef __ANDROID__
             JNIEnv* env = (JNIEnv*)SDL_AndroidGetJNIEnv(); 
@@ -24,10 +26,11 @@ namespace linc {
             env->DeleteLocalRef(app_context);
             env->DeleteLocalRef(class_loader);
             env->DeleteLocalRef(clazz);
-            return gvr;
+            _ctx = gvr;
 #else
-            return gvr_create();
+            _ctx = gvr_create();
 #endif
+            return _ctx;
         }
         
         gvr_swap_chain* swap_chain_create(gvr_context* gvr, int size) {
@@ -57,6 +60,13 @@ namespace linc {
             size.width = width;
             size.height = height;
             gvr_swap_chain_resize_buffer(swap_chain, index, size);
+        }
+        
+        void destroy() {
+            if(_ctx) {
+                gvr_destroy(&_ctx);
+                _ctx = NULL;
+            }
         }
 
     } //gvr namespace
